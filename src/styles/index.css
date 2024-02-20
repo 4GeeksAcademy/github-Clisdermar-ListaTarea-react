@@ -1,12 +1,36 @@
-
-/* 
-
-    You can write your own styles here...
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 700px;
+   
+  }
+  h1{
+    font-size: 80px;
+    color:rgb(231, 231, 240);
+  }
+.card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     
+   
+  }
+  .list-group {
+    margin-top: 0;
+   
     
-    ...Or you can use the import command to include 
-    other sylesheets into your bunde as well, e.j:
-    
-    import 'relative/path/to/stylesheet.scss';
-
-*/
+  }
+  .list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 350%;
+   
+  }
+  
+  .delete-button {
+    background: none; 
+    border: none; 
+    cursor: pointer;
+    outline: none;
+  }
