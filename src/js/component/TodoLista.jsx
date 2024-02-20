@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faXmark} from '@fortawesome/free-solid-svg-icons';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 
 const TodoLista = () => {
@@ -26,43 +26,51 @@ const TodoLista = () => {
     setTasksList(updatedTasks);
   };
 
+  const remainingTasks = tasksList.length;
+
   return (
+    <div className="container">
+      <div>
+        <h1>Todos</h1>
+      </div>
+      <div className="card">
+        <div className="card-body">
+          <ul className="list-group" onSubmit={handleSubmit}>
+            <form>
+              <input
+                type="text"
+                placeholder="What needs to be done?"
+                value={task}
+                onChange={handleChange}
+                style={{ border: 'none', outline: 'none', marginBottom: '10px' }}
+              />
+            </form>
 
-   
-      <div className="container">
-        <div> <h1>Todos</h1></div>
-      <div class="card">
-        <div class="card-body">
-      <ul class="list-group" onSubmit={handleSubmit}>
-      <form >
-        <input
-          type="text"
-          placeholder="What need to be done?"
-          value={task}
-          onChange={handleChange} 
-          style={{ border: 'none', outline: 'none'}} 
-        />
-         </form>
-        
-        {tasksList.map((task, index) => (
-          <li class="list-group-item" key={index}
-          onMouseEnter={() => setHoveredIndex(index)}
-          onMouseLeave={() => setHoveredIndex(null)}>
-            {task}
+            {tasksList.map((task, index) => (
+              <li
+                className="list-group-item"
+                key={index}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+              >
+                {task}
+                {hoveredIndex === index && (
+                  <button className="delete-button" onClick={() => handleDelete(index)}>
+                    <FontAwesomeIcon icon={faTimes} style={{ color: '#f03405' }} />
+                  </button>
+                )}
+              </li>
+            ))}
 
-            {hoveredIndex === index && (
-              <button className="delete-button" onClick={() => handleDelete(index)}>
-            <FontAwesomeIcon icon={faXmark} style={{color: "#f03405",}} />
-            </button>
+            {remainingTasks > 0 && (
+              <li className="list-group-item">
+                <strong>{remainingTasks} item left</strong> 
+              </li>
             )}
-          </li>
-        ))}
-      </ul>
-      
+          </ul>
+        </div>
+      </div>
     </div>
-    </div>
-    </div>
-    
   );
 };
 
